@@ -1,4 +1,4 @@
-from project1_auto import BooksCollector
+from main import BooksCollector
 import pytest
 
 class TestBooksCollector:
