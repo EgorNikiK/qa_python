@@ -23,19 +23,22 @@ class TestBooksCollector:
         assert len(collector.books_genre) == 1
 
     # Тесты для set_book_genre
+    def test_get_book_genre_for_empty_genre(self, collector):
+        collector.add_new_book('Книга без жанра')
+        assert collector.get_book_genre('Книга без жанра') == ''
+
+
+    def test_get_books_genre_returns_full_dict(self, collector):
+        collector.add_new_book('Книга 1')
+        collector.add_new_book('Книга 2')
+        collector.set_book_genre('Книга 1', 'Фантастика')
+        assert collector.get_books_genre() == {'Книга 1': 'Фантастика', 'Книга 2': ''}
+
+
     def test_set_book_genre_valid(self, collector):
         collector.add_new_book('Гарри Поттер')
         collector.set_book_genre('Гарри Поттер', 'Фантастика')
-        assert collector.get_book_genre('Гарри Поттер') == 'Фантастика'
-
-    def test_set_book_genre_invalid_genre(self, collector):
-        collector.add_new_book('Гарри Поттер')
-        collector.set_book_genre('Гарри Поттер', 'Несуществующий жанр')
-        assert collector.get_book_genre('Гарри Поттер') == ''
-
-    def test_set_book_genre_nonexistent_book(self, collector):
-        collector.set_book_genre('Несуществующая книга', 'Фантастика')
-        assert 'Несуществующая книга' not in collector.books_genre
+        assert collector.books_genre['Гарри Поттер'] == 'Фантастика'
 
     # Тесты для get_books_with_specific_genre
     def test_get_books_with_specific_genre(self, collector):
