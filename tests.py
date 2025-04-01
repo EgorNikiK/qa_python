@@ -22,6 +22,7 @@ class TestBooksCollector:
         collector.add_new_book('Гарри Поттер')
         assert len(collector.books_genre) == 1
 
+   # изменения с 25-43 строку
     # Тесты для set_book_genre
     def test_get_book_genre_for_empty_genre(self, collector):
         collector.add_new_book('Книга без жанра')
